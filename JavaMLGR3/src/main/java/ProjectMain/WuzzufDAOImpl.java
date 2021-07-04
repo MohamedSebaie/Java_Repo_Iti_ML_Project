@@ -1,13 +1,27 @@
 package ProjectMain;
 
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URISyntaxException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.*;
 
+import javax.imageio.ImageIO;
+import javax.swing.JFrame;
+
+import org.apache.commons.csv.CSVFormat;
 
 import joinery.DataFrame;
+import smile.clustering.KMeans;
+import smile.clustering.PartitionClustering;
+import smile.data.measure.NominalScale;
+import smile.data.vector.IntVector;
+import smile.io.Read;
 import smile.io.Write;
+import smile.plot.swing.ScatterPlot;
 import tech.tablesaw.api.Table;
 @SuppressWarnings({ "unchecked" ,"rawtypes"})
 public class WuzzufDAOImpl implements WuzzufDAO{
@@ -52,9 +66,13 @@ public class WuzzufDAOImpl implements WuzzufDAO{
 	}
 
 	@Override
-	public smile.data.DataFrame SmileDateFrame(Table TableName) {
+	public smile.data.DataFrame ReadASSmileDateFrame(String CSVFile) throws IOException, URISyntaxException {
+		
+		CSVFormat format = CSVFormat.DEFAULT.withFirstRecordAsHeader().withDelimiter(',');
+		
+		smile.data.DataFrame dfSmile = Read.csv(CSVFile,format);
 	
-		smile.data.DataFrame dfSmile=TableName.smile().toDataFrame();
+		//smile.data.DataFrame dfSmile=TableName.smile().toDataFrame();
 		
 		return dfSmile;
 	}
@@ -188,9 +206,34 @@ public class WuzzufDAOImpl implements WuzzufDAO{
 		df.add("FactorizeYearsExp",NewOne);
 	    return df;
    
-
-	
 	}
+	@Override
+    public double[][] KmeanGraph(smile.data.DataFrame df) throws IOException, InvocationTargetException, InterruptedException {
+        df = FactorizeData(df);
+        smile.data.DataFrame kmean = df.select("CompanyFact", "JobsFact");
+        
+        double[][] KMEAN= kmean.toArray();
+//        KMeans clusters = PartitionClustering.run(100, () -> KMeans.fit(kmean.toArray(),3));
+//        JFrame Image= ScatterPlot.of(kmean.toArray(), clusters.y, '.').canvas().setAxisLabels("Companies", "Jobs").window();
+//        ByteArrayOutputStream output = new ByteArrayOutputStream();
+//        ImageIO.write(image, "png", output);
+//        //return Base64.getEncoder().encodeToString(output.toByteArray());
+        return KMEAN;
+        
+    }
+    
+    @Override
+    public smile.data.DataFrame FactorizeData(smile.data.DataFrame df) {
+        df = df.merge(IntVector.of("YearsExpFact", factorizeYears(df, "YearsExp")));
+        df = df.merge(IntVector.of("JobsFact", factorizeYears(df, "Title")));
+        df = df.merge(IntVector.of("CompanyFact", factorizeYears(df, "Company")));
+        return df;
+    }
+    @Override
+    public int[] factorizeYears(smile.data.DataFrame df, String col_name) {
+        String[] values = df.stringVector(col_name).distinct().toArray(new String[]{});
+        return df.stringVector(col_name).factorize(new NominalScale(values)).toIntArray();
+    }
 	
 	@Override
 	public DataFrame CountryColumnCleaning(DataFrame df) {

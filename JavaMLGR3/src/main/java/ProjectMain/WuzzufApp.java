@@ -1,6 +1,8 @@
 package ProjectMain;
 
+import java.awt.image.BufferedImage;
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
 import java.util.*;
 
@@ -8,10 +10,15 @@ import java.util.*;
 import org.knowm.xchart.*;
 import org.knowm.xchart.style.Styler.ChartTheme;
 
+import joinery.DataFrame;
+import smile.clustering.KMeans;
+import smile.clustering.PartitionClustering;
+import smile.plot.swing.ScatterPlot;
+
 public class WuzzufApp {
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
-	public static void main(String[] args) throws IOException, URISyntaxException  {
+	public static void main(String[] args) throws IOException, URISyntaxException, InvocationTargetException, InterruptedException  {
 		
 		WuzzufDAOImpl object1= new WuzzufDAOImpl();
 		
@@ -35,29 +42,47 @@ public class WuzzufApp {
 		System.out.println("*******************************************************************************************");
 
 		
-		List List1= object1.DisplayTopDemandingCompaniesforJobsCharts(dfCleaned,1,11);
+		List<List<String>> List1= object1.DisplayTopDemandingCompaniesforJobsCharts(dfCleaned,1,11);
 		List<String>  List11= (List<String>) List1.get(0);
-		List<Integer> List22=(List<Integer>) List1.get(1);
+		List<String> List22= List1.get(1);
 		
-		PieChart chart0 =new PieChartBuilder().width(800).height(600).title("Top_5_DemandingCompaniesforJobs").build();
-		for (int i=0;i<List11.size();i++) {chart0.addSeries(List11.get(i),List22.get(i));}
-		new SwingWrapper(chart0).displayChart(); 
+		List <String> names3 = Arrays.asList("Company","Count");
 		
-		CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Company vs. Count").xAxisTitle("Title").yAxisTitle("Count").theme(ChartTheme.GGPlot2).build();
-	    chart.addSeries(".",List11,List22);
-	    new SwingWrapper(chart).displayChart();
-	    
+		DataFrame<String> dfTopCompanies = new DataFrame<>();
+		for (int i = 0;i<names3.size();i++) {
+			dfTopCompanies.add(names3.get(i),List1.get(i));
+		}
 		
-		Map map=object1.Skills(dfCleaned);
+		System.out.print(dfTopCompanies);
+		System.out.println("*******************************************************************************************");
 		
-		map.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).limit(20).forEach(System.out::println);
+//		PieChart chart0 =new PieChartBuilder().width(800).height(600).title("Top_5_DemandingCompaniesforJobs").build();
+//		for (int i=0;i<List11.size();i++) {chart0.addSeries(List11.get(i),List22.get(i));}
+//		new SwingWrapper(chart0).displayChart(); 
+//		
+//		CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Company vs. Count").xAxisTitle("Title").yAxisTitle("Count").theme(ChartTheme.GGPlot2).build();
+//	    chart.addSeries(".",List11,List22);
+//	    new SwingWrapper(chart).displayChart();
+//	    
+//		
+//		Map map=object1.Skills(dfCleaned);
+//		
+//		map.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).limit(20).forEach(System.out::println);
+//		
+//		smile.data.DataFrame SimleDF= object1.ReadASSmileDateFrame("Wuzzuf_JobsCleaned.csv");
+		
+//		double [][] KMEANS=object1.KmeanGraph(SimleDF);
+//		
+//		KMeans clusters = PartitionClustering.run(100, () -> KMeans.fit(KMEANS,3));
+//		ScatterPlot.of(KMEANS, clusters.y, '.').canvas().setAxisLabels("Companies", "Jobs").window();
 		
 		
-		joinery.DataFrame df2= object1.YearsEXPcol_Factorization(dfCleaned);
 		
-		joinery.DataFrame df3=object1.CountryColumnCleaning(df2);
-		 
-		 df3.writeCsv("Wuzzuf_JobsOUTFinal.csv");
+//		joinery.DataFrame df2= object1.YearsEXPcol_Factorization(dfCleaned);
+//		
+//		joinery.DataFrame df3=object1.CountryColumnCleaning(df2);
+//		 
+//		 df3.writeCsv("Wuzzuf_JobsOUTFinal.csv");
 		 
 
 	}

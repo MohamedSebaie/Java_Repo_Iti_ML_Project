@@ -52,4 +52,9 @@ public class Consumer {
 		return df;
 		}
 	
+	public double [][] Kmeans() {
+		double [][] KMEANS = restTemplate.getForObject("http://localhost:8080/Kmeans", double [][].class);
+		return KMEANS;
+		}
+	
 }

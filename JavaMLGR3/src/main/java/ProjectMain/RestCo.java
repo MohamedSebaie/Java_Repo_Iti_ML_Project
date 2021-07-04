@@ -2,6 +2,8 @@ package ProjectMain;
 
 
 import java.io.IOException;
+import java.lang.reflect.InvocationTargetException;
+import java.net.URISyntaxException;
 import java.util.*;
 
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -90,5 +92,13 @@ public class RestCo {
 			ls.add(l);
 		}
 	return ls;
+	}
+	
+	@RequestMapping("/Kmeans")
+	public double [][] Kmeans() throws IOException, URISyntaxException, InvocationTargetException, InterruptedException{
+		smile.data.DataFrame SimleDF= object1.ReadASSmileDateFrame("Wuzzuf_JobsCleaned.csv");
+		double [][] KMEANS= object1.KmeanGraph(SimleDF);
+		
+	return KMEANS;
 	}
 }
