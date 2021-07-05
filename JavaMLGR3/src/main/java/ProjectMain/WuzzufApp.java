@@ -1,11 +1,13 @@
 package ProjectMain;
 
-import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
-import java.util.*;
-
+import java.util.Arrays;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
+import com.google.common.collect.Lists;
 
 import org.knowm.xchart.*;
 import org.knowm.xchart.style.Styler.ChartTheme;
@@ -56,32 +58,32 @@ public class WuzzufApp {
 		System.out.print(dfTopCompanies);
 		System.out.println("*******************************************************************************************");
 		
-//		PieChart chart0 =new PieChartBuilder().width(800).height(600).title("Top_5_DemandingCompaniesforJobs").build();
-//		for (int i=0;i<List11.size();i++) {chart0.addSeries(List11.get(i),List22.get(i));}
-//		new SwingWrapper(chart0).displayChart(); 
-//		
-//		CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Company vs. Count").xAxisTitle("Title").yAxisTitle("Count").theme(ChartTheme.GGPlot2).build();
-//	    chart.addSeries(".",List11,List22);
-//	    new SwingWrapper(chart).displayChart();
-//	    
-//		
-//		Map map=object1.Skills(dfCleaned);
-//		
-//		map.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).limit(20).forEach(System.out::println);
-//		
-//		smile.data.DataFrame SimleDF= object1.ReadASSmileDateFrame("Wuzzuf_JobsCleaned.csv");
+		PieChart chart0 =new PieChartBuilder().width(800).height(600).title("Top_5_DemandingCompaniesforJobs").build();
+		for (int i=0;i<List11.size();i++) {chart0.addSeries(List11.get(i),Lists.transform(List22, Integer::parseInt).get(i));}
+		new SwingWrapper(chart0).displayChart(); 
 		
-//		double [][] KMEANS=object1.KmeanGraph(SimleDF);
-//		
-//		KMeans clusters = PartitionClustering.run(100, () -> KMeans.fit(KMEANS,3));
-//		ScatterPlot.of(KMEANS, clusters.y, '.').canvas().setAxisLabels("Companies", "Jobs").window();
+		CategoryChart chart = new CategoryChartBuilder().width(800).height(600).title("Company vs. Count").xAxisTitle("Title").yAxisTitle("Count").theme(ChartTheme.GGPlot2).build();
+	    chart.addSeries(".",List11,Lists.transform(List22, Integer::parseInt));
+	    new SwingWrapper(chart).displayChart();
+	    
+		
+		Map map=object1.Skills(dfCleaned);
+		
+		map.entrySet().stream().sorted(Map.Entry.comparingByValue(Comparator.reverseOrder())).limit(20).forEach(System.out::println);
+		
+		smile.data.DataFrame SimleDF= object1.ReadASSmileDateFrame("Wuzzuf_JobsCleaned.csv");
+		
+		double [][] KMEANS=object1.KmeanGraph(SimleDF);
+		
+		KMeans clusters = PartitionClustering.run(100, () -> KMeans.fit(KMEANS,3));
+		ScatterPlot.of(KMEANS, clusters.y, '.').canvas().setAxisLabels("Companies", "Jobs").window();
 		
 		
 		
-//		joinery.DataFrame df2= object1.YearsEXPcol_Factorization(dfCleaned);
-//		
-//		joinery.DataFrame df3=object1.CountryColumnCleaning(df2);
-//		 
+		joinery.DataFrame df2= object1.YearsEXPcol_Factorization(dfCleaned);
+		
+		joinery.DataFrame df3=object1.CountryColumnCleaning(df2);
+		 
 //		 df3.writeCsv("Wuzzuf_JobsOUTFinal.csv");
 		 
 
