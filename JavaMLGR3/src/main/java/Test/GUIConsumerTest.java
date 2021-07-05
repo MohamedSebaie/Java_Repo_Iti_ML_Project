@@ -1,27 +1,10 @@
 package Test;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JButton;
-import java.awt.BorderLayout;
-import java.awt.Button;
-import javax.swing.JRadioButton;
-import javax.swing.JComboBox;
-import com.jgoodies.forms.layout.FormLayout;
-import com.jgoodies.forms.layout.ColumnSpec;
-import com.jgoodies.forms.layout.RowSpec;
-import com.jgoodies.forms.layout.FormSpecs;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.BoxLayout;
-import java.awt.GridBagLayout;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.GridBagConstraints;
-import java.awt.Color;
-import java.awt.Font;
-import java.awt.Insets;
+
+import javax.swing.JFrame;
 
 public class GUIConsumerTest {
 
