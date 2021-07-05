@@ -65,7 +65,7 @@ public class ConsumerTest {
 	
 	
 	// 1) Read CSV and Display Some of DataFrame..
-	private static void ReadCSVandDisplayDataFrame() {
+	 static void ReadCSVandDisplayDataFrame() {
 		System.out.println("***************************1)ReadCSVandDisplayDataFrame*****************************");
 		List<List<String>> ls1 = consumer.DisplaydataFrame();
 		List <String> names1 = Arrays.asList("Title","Company","Location","Type","Level","YearsExp","Country","Skills");
@@ -83,7 +83,7 @@ public class ConsumerTest {
 	
 	
 	// 2) Structure and Summary..
-	private static void StructureandSummary() {
+	 static void StructureandSummary() {
 		System.out.println("***************************2)StructureandSummary*****************************");
 		List ls2 = consumer.SummaryandStructure();
 		System.out.println("Summary and Structure Before Cleaning"+"\n"+"-----------------------------------------------");
@@ -96,7 +96,7 @@ public class ConsumerTest {
 	
 	
 	// 3) DataCleaning..
-	private static void DataCleaning() {
+	 static void DataCleaning() {
 		System.out.println("***************************3)DataCleaning*****************************");
 		List<List<String>> lsCleaned = consumer.DataCleaning();
 		List <String> names2 = Arrays.asList("Title","Company","Location","Type","Level","YearsExp","Country","Skills");
@@ -112,7 +112,7 @@ public class ConsumerTest {
 	
 	
 	// 4) Top Demanding Companies..
-	private static void TopDemandingCompaniesforJobs() {
+	 static void TopDemandingCompaniesforJobs() {
 		System.out.println("***************************4)TopDemandingCompaniesforJobs*****************************");
 		List<List<String>> TopCompanies = consumer.TopDemandingCompaniesforJobs();
 		List <String> names3 = Arrays.asList("Company","Count");
@@ -128,7 +128,7 @@ public class ConsumerTest {
 	}
 	
 	// 5) Plot Top Demanding Companies..
-	private static void PlotTopDemandingCompanies() {
+	 static void PlotTopDemandingCompanies() {
 		System.out.println("***************************5)PlotTopDemandingCompanies*****************************");
 		List<List<String>> TopCompanies = consumer.TopDemandingCompaniesforJobs();
 		ChartsFunctionToDisplay.displayPie(TopCompanies, "Companies Vs Count");
@@ -137,7 +137,7 @@ public class ConsumerTest {
 	
 	
 	// 6) Top Popular JobTitles..
-	private static void TopPopularJobTitle() {
+	 static void TopPopularJobTitle() {
 		System.out.println("***************************6)TopPopularJobTitle*****************************");
 		List<List<String>> PopularJobTitles = consumer.TopPopularJobTitles();
 		List <String> names4 = Arrays.asList("Title","Count");
@@ -153,7 +153,7 @@ public class ConsumerTest {
 	}
 	
 	// 7) Plot Top Popular JobTitles..
-	private static void PlotTopPopularJobTitles() {
+	 static void PlotTopPopularJobTitles() {
 		System.out.println("***************************7)PlotTopPopularJobTitles*****************************");
 		List<List<String>> PopularJobTitles = consumer.TopPopularJobTitles();
 		ChartsFunctionToDisplay.displayBar(PopularJobTitles, "JobTitle Vs Count", "JobTitle", "Count");
@@ -161,7 +161,7 @@ public class ConsumerTest {
 	}
 	
 	// 8) Top Popular Areas..
-	private static void TopPopularAreas() {
+	 static void TopPopularAreas() {
 		System.out.println("***************************8)TopPopularAreas*****************************");
 		List<List<String>> PopularAreas = consumer.TopPopularAreas();
 		List <String> names5 = Arrays.asList("Company","Count");
@@ -177,7 +177,7 @@ public class ConsumerTest {
 	}
 	
 	// 9) Plot Top Popular Areas..
-	private static void PlotTopPopularAreas() {
+	 static void PlotTopPopularAreas() {
 		System.out.println("***************************9)PlotTopPopularAreas*****************************");
 		List<List<String>> PopularAreas = consumer.TopPopularAreas();
 		ChartsFunctionToDisplay.displayBar(PopularAreas, "Location Vs Count", "Location", "Count");
@@ -186,7 +186,7 @@ public class ConsumerTest {
 	
 	
 	// 10) Skills one by one and Print The Top Skills Required..
-	private static void TopSkills() {
+	 static void TopSkills() {
 		System.out.println("***************************10)TopSkills*****************************");
 		System.out.println("30 Skills One By One"+"\n"+"-----------------------------------------------");
 		Map skillsMap= consumer.Skills();
@@ -200,7 +200,7 @@ public class ConsumerTest {
 	
 	
 	// 11) YearsEXP Column Factorization..
-	private static void YearsExpFactorization() {
+	 static void YearsExpFactorization() {
 		System.out.println("***************************11)YearsExpFactorization*****************************");
 		List<List<String>> ls5 = consumer.YearsExpFactorization();
 		List <String> names6 = Arrays.asList("Title","Company","Location","Type","Level","YearsExp","Country","Skills","FactorizeYearsExp");
@@ -217,7 +217,7 @@ public class ConsumerTest {
 	
 	
 	// 12) K-Means for Job Title and Companies ..
-	private static void Kmeans() {
+	 static void Kmeans() {
 		System.out.println("***************************12)Kmeans*****************************");
 		double [][] KMEANS = consumer.Kmeans();
 		KMeans clusters = PartitionClustering.run(100, () -> KMeans.fit(KMEANS,3));
