@@ -35,11 +35,11 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
 <ol>
   <li>src/main/java
   <ul>ProjectMain (Package)
-  <ul>run JavaMlgr3Application as Java Application</ul></ul></li>
+  <ul>run "JavaMlgr3Application"---> as Spring Boot (Server) </ul></ul></li>
 </ol> 
 <h3>TesterClient (Client)</h3>
 <ol>
   <li>src/main/java
   <ul>Test (Package)
- <ul>run ConsumerTest as Java Application</ul></ul></li>
+ <ul>run "ConsumerTest" as ---> Java Application</ul></ul></li>
 </ol> 
