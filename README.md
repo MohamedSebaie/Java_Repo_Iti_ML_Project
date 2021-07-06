@@ -46,8 +46,75 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
       -JoinaryDataFrame     
      
 <h1>Image Projects</h1>
+<h4>Server</h4>
 <ol>
-  <li> <ul><img  src="img_projects/01_Server.PNG" alt="Server"/></ul></li>
-</ol> 
- 																					                                        
+  <ul><img  src="img_projects/01_Server.PNG" alt="Server"/></ul>
+</ol>
+
+<h4>Client</h4><ol>
+  <ul><img  src="img_projects/02_Client.PNG" alt="Client.PNG"/></ul>
+</ol>
+
+<h4>Datframe</h4>
+<ol>
+  <ul><img  src="img_projects/03_Read_dataset_as_dataframe.PNG" alt="Read_dataset_as_dataframe.PNG"/></ul>
+</ol>
+
+<h4>Structure and Summary</h4>
+<ol>
+  <ul><img  src="img_projects/04_structure_and_summary.PNG" alt="structure_and_summary.PNG"/></ul>
+</ol>
+
+<h4>Data Cleaning</h4>
+<ol>
+  <ul><img  src="img_projects/05_Clean_data.PNG" alt="Clean_data.PNG"/></ul>
+</ol>
+
+<h4>What are the most demanding companies for jobs?</h4>
+<ol>
+  <ul><img  src="img_projects/06_Most_demanding_companies_for_jobs.PNG" alt="Most_demanding_companies_for_jobs.PNG"/></ul>
+</ol>
+
+<h4>Pie Chart for the most demanding companies for jobs</h4>
+<ol>
+  <ul><img  src="img_projects/07_pieChart_most_demanding_companies.PNG" alt="pieChart_most_demanding_companies.PNG"/></ul>
+</ol>
+
+
+<h4>What are it the most popular job titles?</h4>
+<ol>
+  <ul><img  src="img_projects/08_Most_popular_job_title.PNG" alt="Most_popular_job_title.PNG"/></ul>
+</ol>
+
+<h4>Bar Chart for the most popular job titles?</h4>
+<ol>
+  <ul><img  src="img_projects/09_barChart_for_most_popular_job_titles.PNG" alt="barChart_for_most_popular_job_titles.PNG"/></ul>
+</ol>
+
+<h4>the most popular Areas</h4>
+<ol>
+  <ul><img  src="img_projects/10_Most_popular_Area.PNG" alt="Most_popular_Area.PNG"/></ul>
+</ol>
+
+<h4>Bar Chart for the most popular Areas</h4>
+<ol>
+  <ul><img  src="img_projects/11_barChart_for_most_popular_AreasPNG.PNG" alt="11_barChart_for_most_popular_AreasPNG"/></ul>
+</ol>
+ 				
+<h4>skills one by one - how many each repeated - order -The most important skills required?
+</h4>     
+<ol>
+  <ul><img  src="img_projects/12_skills_howManyRepeatedOrderOutputFindMostImportantSkills.PNG" alt="12_skills_howManyRepeatedOrderOutputFindMostImportantSkills"/></ul>
+</ol>
+
+<h4>Factorize the YearsExp feature and convert it to numbers in new col.</h4>
+<ol>
+  <ul><img  src="img_projects/13_FacotrizeYearsExp.PNG" alt="13_FacotrizeYearsExp"/></ul>
+</ol>
+
+
+<h4> K-means for job title and companies</h4>
+<ol>
+  <ul><img  src="img_projects/14_Kmeans.PNG" alt=" K-means for job title and companies"/></ul>
+</ol>
 <img  src="Description.PNG" alt="Project Description"/>
