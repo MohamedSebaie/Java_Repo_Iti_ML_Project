@@ -35,7 +35,7 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
 <ol>
   <li>src/main/java</li>
   <li>ProjectMain (Package)</li>
- <li>run ConsumerTest as Java Application</li>
+  <li>run JavaMlgr3Application as Java Application</li>
 </ol> 
 <h3>TesterClient (Client)</h3>
 <ol>
