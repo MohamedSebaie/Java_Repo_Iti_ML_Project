@@ -43,6 +43,11 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
 # Main Package : 
       -Smile DataFrame 
       -TableSaw
-      -JoinaryDataFrame                      												                              	
+      -JoinaryDataFrame     
+     
+<h1>Image Projects</h1>
+<ol>
+  <li> <ul><img  src="Img_projects/Server.PNG" alt="Server"/></ul></li>
+</ol> 
  																					                                        
 <img  src="Description.PNG" alt="Project Description"/>
