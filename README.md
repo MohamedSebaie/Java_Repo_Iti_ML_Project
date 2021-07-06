@@ -29,8 +29,17 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
       -JoinaryDataFrame                      												                              	
  																					                                        
 <img  src="Description.PNG" alt="Project Description"/>
-# Project run steps
-    1.Webservices(Server)
-       -src\/main\/java
-         -ProjectMain (Package)
-            -run JavaMlgr3Application as Spring Server
+
+<h1>Project run steps</h1>
+<h2>Webservices(Server)</h2>
+<ol>
+  <li>src/main/java</li>
+  <li>ProjectMain (Package)</li>
+ <li>run ConsumerTest as Java Application</li>
+</ol> 
+<h2>TesterClient (Client)</h2>
+<ol>
+  <li>src/main/java</li>
+  <li>Test (Package)</li>
+ <li>run ConsumerTest as Java Application</li>
+</ol> 
