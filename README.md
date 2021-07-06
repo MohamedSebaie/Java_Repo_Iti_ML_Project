@@ -35,7 +35,7 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
 <ol>
   <li>src/main/java
   <ul>Test (Package)
- <ul>run "ConsumerTest" as ---> Java Application</ul></ul></li>
+ <ul>run "ConsumerTest" as ---> Java Application <ul>Choose Any WebServices as You Like (from 1------> 13)</ul></ul></ul></li>
 </ol> 
 
  
