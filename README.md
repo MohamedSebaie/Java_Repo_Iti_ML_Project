@@ -30,11 +30,11 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
  																					                                        
 <img  src="Description.PNG" alt="Project Description"/>
 # Project run steps
-    1. Webservices (Server)
-       - src/main/java
-          - ProjectMain (Package)
-             - run JavaMlgr3Application as Spring Server
-    2. TesterClient (Client)
-       - src/main/java
-          - Test (Package)
-            - run ConsumerTest as Java Application
+    1.Webservices (Server)
+       -src/main/java
+         -ProjectMain (Package)
+            -run JavaMlgr3Application as Spring Server
+    2.TesterClient (Client)
+       -src/main/java
+          -Test (Package)
+            -run ConsumerTest as Java Application
