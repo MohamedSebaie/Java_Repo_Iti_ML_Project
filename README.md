@@ -117,4 +117,4 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
 <ol>
   <ul><img  src="img_projects/14_Kmeans.PNG" alt=" K-means for job title and companies"/></ul>
 </ol>
-<img  src="00_JavaRequirement.PNG" alt="Project Requirement"/>
+<img  src="img_projects/00_JavaRequirement.PNG" alt="Project Requirement"/>
