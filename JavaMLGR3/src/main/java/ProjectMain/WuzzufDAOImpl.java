@@ -1,103 +1,118 @@
 package ProjectMain;
 
-import java.awt.image.BufferedImage;
-import java.io.ByteArrayOutputStream;
 import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
 import java.net.URISyntaxException;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.nio.file.*;
 import java.util.*;
-
-import javax.imageio.ImageIO;
-import javax.swing.JFrame;
-
 import org.apache.commons.csv.CSVFormat;
-
 import joinery.DataFrame;
-import smile.clustering.KMeans;
-import smile.clustering.PartitionClustering;
 import smile.data.measure.NominalScale;
 import smile.data.vector.IntVector;
-import smile.io.Read;
-import smile.io.Write;
-import smile.plot.swing.ScatterPlot;
+import smile.io.*;
 import tech.tablesaw.api.Table;
+
 @SuppressWarnings({ "unchecked" ,"rawtypes"})
-public class WuzzufDAOImpl implements WuzzufDAO{
+public class WuzzufDAOImpl implements WuzzufDAO
+{
 
 	@Override
-	public Table ReadAsTable(String csvFile) throws IOException {
-		// TODO Auto-generated method stub
-		Table table1 = Table.read().csv(csvFile);
+	public Table ReadAsTable(String csvFile)
+	{
+		Table table1 = null;
+		try 
+		{table1 = Table.read().csv(csvFile);} 
+		catch (IOException e) 
+		{e.printStackTrace();}
 		
 		return table1;
 	}
 	
-		
 	@Override
-	public List Summary_Statistics(String csvFile) throws IOException {
-		Table table1 = Table.read().csv(csvFile);
+	public List<String> Summary_Statistics(String csvFile)
+	{
+		Table table1 = ReadAsTable(csvFile);
 		String Shape= table1.shape().toString();
 		String Structure= table1.structure().toString();
 		String Summary= table1.summary().toString();
-		List<String> ls= new ArrayList<>();
-		ls.add(Shape);
-		ls.add(Structure);
-		ls.add(Summary);
-		return ls;
+		List<String> list= new ArrayList<>();
+		list.add(Shape);
+		list.add(Structure);
+		list.add(Summary);
+		return list;
 	}
 
 	@Override
-	public joinery.DataFrame DataCleaning(String InputCSV, String CleanedCSV) throws IOException {
-		Table table1 = Table.read().csv(InputCSV);
+	public joinery.DataFrame DataCleaning(String InputCSV, String CleanedCSV) 
+	{
+		Table table1 = ReadAsTable(InputCSV);
 		Table table2=table1.dropDuplicateRows().dropRowsWithMissingValues();
-		table2.write().csv(CleanedCSV);
-		DataFrame dfJoinery= DataFrame.readCsv(CleanedCSV);
+		WriteTabletoCSV(table2,CleanedCSV);
+		joinery.DataFrame dfJoinery= ReadAsJoineryDataFrame(CleanedCSV);
 		
 		return dfJoinery;
 	}
 
 	@Override
-	public String WriteTabletoCSV(Table TableName,String CSVoutName) throws IOException {
+	public String WriteTabletoCSV(Table TableName,String CSVoutName)
+	{
 		
-		TableName.write().csv(CSVoutName);;
+		try 
+		{TableName.write().csv(CSVoutName);} 
+		
+		catch (IOException e) 
+		{e.printStackTrace();}
+		
 		return CSVoutName;
 	}
 
 	@Override
-	public smile.data.DataFrame ReadASSmileDateFrame(String CSVFile) throws IOException, URISyntaxException {
+	public smile.data.DataFrame ReadASSmileDateFrame(String CSVFile) 
+	{
 		
 		CSVFormat format = CSVFormat.DEFAULT.withFirstRecordAsHeader().withDelimiter(',');
+		smile.data.DataFrame dfSmile = null;
 		
-		smile.data.DataFrame dfSmile = Read.csv(CSVFile,format);
-	
-		//smile.data.DataFrame dfSmile=TableName.smile().toDataFrame();
+		try 
+		{dfSmile = Read.csv(CSVFile,format);} 
+		
+		catch (IOException | URISyntaxException e) 
+		{e.printStackTrace();}
 		
 		return dfSmile;
 	}
 	
 	@Override
-	public String WriteSmiletoCSV(smile.data.DataFrame SmileDf, String Path, String CSVoutName) throws IOException {
-		
+	public String WriteSmiletoCSV(smile.data.DataFrame SmileDf, String Path, String CSVoutName)
+	{
 		Path path = Paths.get(Path);
 		
 		
-		Write.csv(SmileDf, path);
+		try 
+		{Write.csv(SmileDf, path);} 
+		
+		catch (IOException e) 
+		{e.printStackTrace();}
 		
 		return CSVoutName;
 	}
 
 	@Override
-	public joinery.DataFrame ReadAsJoineryDataFrame(String csvFile) throws IOException {
+	public joinery.DataFrame ReadAsJoineryDataFrame(String csvFile)
+	{
 
-		DataFrame dfJoinery= DataFrame.readCsv(csvFile);
+		DataFrame dfJoinery = null;
+		try 
+		{dfJoinery = DataFrame.readCsv(csvFile);} 
+		
+		catch (IOException e) 
+		{e.printStackTrace();}
 		
 		return dfJoinery;
 	}
 
 	@Override
-	public List DisplayTopDemandingCompaniesforJobsCharts(joinery.DataFrame df, int SlicingStart, int SlicingEnd) {
+	public List<List<String>> DisplayTopDemandingCompaniesforJobsCharts(joinery.DataFrame df, int SlicingStart, int SlicingEnd) 
+	{
 		joinery.DataFrame dfJoinery= df.retain("Title","Company").groupBy("Company").count().sortBy(-1).slice(SlicingStart, SlicingEnd);
 		
 		List<String> companyList= dfJoinery.col("Company");
@@ -109,9 +124,9 @@ public class WuzzufDAOImpl implements WuzzufDAO{
 		return LIST;
 	}
 
-	
 	@Override
-	public List DisplayTopPopularJobTitlesCharts(joinery.DataFrame df,int SlicingStart, int SlicingEnd) {
+	public List<List<String>> DisplayTopPopularJobTitlesCharts(joinery.DataFrame df,int SlicingStart, int SlicingEnd) 
+	{
 		joinery.DataFrame dfJoinery1= df.retain("Title","Company").groupBy("Title").count().sortBy(-1).slice(SlicingStart, SlicingEnd);
 		
 		List<String> titleList= dfJoinery1.col("Title");
@@ -123,7 +138,8 @@ public class WuzzufDAOImpl implements WuzzufDAO{
 	}
 	
 	@Override
-	public List DisplayTopPopularAreasCharts(joinery.DataFrame df,int SlicingStart, int SlicingEnd) {
+	public List<List<String>> DisplayTopPopularAreasCharts(joinery.DataFrame df,int SlicingStart, int SlicingEnd) 
+	{
 	    joinery.DataFrame dfJoinery2= df.retain("Location","Title").groupBy("Location").count().sortBy(-1).slice(SlicingStart, SlicingEnd);
 	    
 	    
@@ -137,8 +153,8 @@ public class WuzzufDAOImpl implements WuzzufDAO{
 	}
 
 	@Override
-	public Map Skills(DataFrame df) {
-		// TODO Auto-generated method stub
+	public Map<String,Integer> Skills(joinery.DataFrame df) 
+	{
 		
 		DataFrame J=df.retain("Skills");
 		List SkillsList=J.flatten();
@@ -153,8 +169,10 @@ public class WuzzufDAOImpl implements WuzzufDAO{
 
 		return map;
 	}
+	
 	@Override
-	public joinery.DataFrame YearsEXPcol_Factorization(DataFrame df) {
+	public joinery.DataFrame YearsEXPcol_Factorization(joinery.DataFrame df) 
+	{
 		
 		
 		joinery.DataFrame YearsEXP=df.retain("YearsExp");
@@ -200,43 +218,41 @@ public class WuzzufDAOImpl implements WuzzufDAO{
 	    	else {NewOne.add("3");}
 		
 	    }
-	    
-	    //df.add("NewYearsExp",YearsEXPNEW);
 		
 		df.add("FactorizeYearsExp",NewOne);
 	    return df;
    
 	}
+	
 	@Override
-    public double[][] KmeanGraph(smile.data.DataFrame df) throws IOException, InvocationTargetException, InterruptedException {
+    public double[][] KmeanGraph(smile.data.DataFrame df)
+	{
         df = FactorizeData(df);
-        smile.data.DataFrame kmean = df.select("CompanyFact", "JobsFact");
+        smile.data.DataFrame kmean = df.select("CompanyFactorize", "JobsFactorize");
         
         double[][] KMEAN= kmean.toArray();
-//        KMeans clusters = PartitionClustering.run(100, () -> KMeans.fit(kmean.toArray(),3));
-//        JFrame Image= ScatterPlot.of(kmean.toArray(), clusters.y, '.').canvas().setAxisLabels("Companies", "Jobs").window();
-//        ByteArrayOutputStream output = new ByteArrayOutputStream();
-//        ImageIO.write(image, "png", output);
-//        //return Base64.getEncoder().encodeToString(output.toByteArray());
         return KMEAN;
         
     }
     
     @Override
-    public smile.data.DataFrame FactorizeData(smile.data.DataFrame df) {
-        df = df.merge(IntVector.of("YearsExpFact", factorizeYears(df, "YearsExp")));
-        df = df.merge(IntVector.of("JobsFact", factorizeYears(df, "Title")));
-        df = df.merge(IntVector.of("CompanyFact", factorizeYears(df, "Company")));
+    public smile.data.DataFrame FactorizeData(smile.data.DataFrame df) 
+    {
+        df = df.merge(IntVector.of("JobsFactorize", ColFactorize(df, "Title")));
+        df = df.merge(IntVector.of("CompanyFactorize", ColFactorize(df, "Company")));
         return df;
     }
+    
     @Override
-    public int[] factorizeYears(smile.data.DataFrame df, String col_name) {
+    public int[] ColFactorize(smile.data.DataFrame df, String col_name) 
+    {
         String[] values = df.stringVector(col_name).distinct().toArray(new String[]{});
         return df.stringVector(col_name).factorize(new NominalScale(values)).toIntArray();
     }
 	
 	@Override
-	public DataFrame CountryColumnCleaning(DataFrame df) {
+	public DataFrame CountryColumnCleaning(DataFrame df) 
+	{
 		joinery.DataFrame countrydf=df.retain("Country");
 		List countryList=countrydf.flatten();
 		
@@ -258,14 +274,6 @@ public class WuzzufDAOImpl implements WuzzufDAO{
 		 df.add("CleanedCountryCol",NEWCountrylist);
 		return df;
 	}
-
-
-
-
-	
-
-
-	
-    
+   
 
 }

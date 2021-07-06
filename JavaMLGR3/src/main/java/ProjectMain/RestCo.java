@@ -1,10 +1,9 @@
 package ProjectMain;
 
 
-import java.io.IOException;
-import java.lang.reflect.InvocationTargetException;
-import java.net.URISyntaxException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,17 +12,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RestCo {
 	
-	@RequestMapping("/MSebaie")
-    public String Sebaiefunc(){
-
-        return "Hello Sebaie";
-    }
-	
-	WuzzufDAOImpl object1= new WuzzufDAOImpl();
+	WuzzufDAOImpl Wuzzufobject= new WuzzufDAOImpl();
 	
 	@RequestMapping("/DisplaydataFrame")
-	public List<List<String>>  DisplaydataFrame() throws IOException{
-		joinery.DataFrame df=object1.ReadAsJoineryDataFrame("Wuzzuf_Jobs.csv");
+	public List<List<String>>  DisplaydataFrame() {
+		joinery.DataFrame df=Wuzzufobject.ReadAsJoineryDataFrame("Wuzzuf_Jobs.csv");
 		List<List<String>> ls = new ArrayList<List<String>>();
 		for(int i = 0 ; i<df.length(); i++) 
 		{
@@ -34,14 +27,14 @@ public class RestCo {
 	}
 	
 	@RequestMapping("/SummaryandStructure")
-	public List SummaryandStructure() throws IOException{
-		List SummayStatisticsList= object1.Summary_Statistics("Wuzzuf_Jobs.csv");
+	public List SummaryandStructure() {
+		List SummayStatisticsList= Wuzzufobject.Summary_Statistics("Wuzzuf_Jobs.csv");
 	return SummayStatisticsList;
 	}
 	
 	@RequestMapping("/DataCleaning")
-	public List<List<String>> DataCleaning() throws IOException{
-		joinery.DataFrame df= object1.DataCleaning("Wuzzuf_Jobs.csv","Wuzzuf_JobsCleanedRest.csv");
+	public List<List<String>> DataCleaning(){
+		joinery.DataFrame df= Wuzzufobject.DataCleaning("Wuzzuf_Jobs.csv","Wuzzuf_JobsCleanedRest.csv");
 		List<List<String>> ls = new ArrayList<List<String>>();
 		for(int i = 0 ; i<df.length(); i++) 
 		{
@@ -53,38 +46,43 @@ public class RestCo {
 	
 	
 	@RequestMapping("/TopDemandingCompaniesforJobs")
-	public List TopDemandingCompaniesforJobs() throws IOException{
-		joinery.DataFrame df= object1.ReadAsJoineryDataFrame("Wuzzuf_JobsCleanedRest.csv");
-		List TopDemandingCompanies= object1.DisplayTopDemandingCompaniesforJobsCharts(df,1,11);
+	public List TopDemandingCompaniesforJobs()
+	{
+		joinery.DataFrame df= Wuzzufobject.ReadAsJoineryDataFrame("Wuzzuf_JobsCleanedRest.csv");
+		List TopDemandingCompanies= Wuzzufobject.DisplayTopDemandingCompaniesforJobsCharts(df,1,11);
 
 	return TopDemandingCompanies;
 	}
 	
 	@RequestMapping("/TopPopularJobTitles")
-	public List TopPopularJobTitles() throws IOException{
-		joinery.DataFrame df= object1.ReadAsJoineryDataFrame("Wuzzuf_JobsCleanedRest.csv");
-		List PopularJobTitles= object1.DisplayTopPopularJobTitlesCharts(df,0,6);
+	public List TopPopularJobTitles()
+	{
+		joinery.DataFrame df= Wuzzufobject.ReadAsJoineryDataFrame("Wuzzuf_JobsCleanedRest.csv");
+		List PopularJobTitles= Wuzzufobject.DisplayTopPopularJobTitlesCharts(df,0,6);
 	return PopularJobTitles;
 	}
 	
 	@RequestMapping("/TopPopularAreas")
-	public List DisplayTopPopularAreas() throws IOException{
-		joinery.DataFrame df= object1.ReadAsJoineryDataFrame("Wuzzuf_JobsCleanedRest.csv");
-		List PopularAreas= object1.DisplayTopPopularAreasCharts(df,0,6);
+	public List DisplayTopPopularAreas()
+	{
+		joinery.DataFrame df= Wuzzufobject.ReadAsJoineryDataFrame("Wuzzuf_JobsCleanedRest.csv");
+		List PopularAreas= Wuzzufobject.DisplayTopPopularAreasCharts(df,0,6);
 	return PopularAreas;
 	}
 
 	@RequestMapping("/Skills")
-	public Map Skills() throws IOException{
-		joinery.DataFrame df= object1.ReadAsJoineryDataFrame("Wuzzuf_JobsCleanedRest.csv");
-		Map skillsMap= object1.Skills(df);
+	public Map Skills()
+	{
+		joinery.DataFrame df= Wuzzufobject.ReadAsJoineryDataFrame("Wuzzuf_JobsCleanedRest.csv");
+		Map skillsMap= Wuzzufobject.Skills(df);
 	return skillsMap;
 	}
 	
 	@RequestMapping("/YearsExpFactorization")
-	public List<List<String>> YearsExpFactorization() throws IOException{
-		joinery.DataFrame df= object1.ReadAsJoineryDataFrame("Wuzzuf_JobsCleanedRest.csv");
-		joinery.DataFrame Newdf= object1.YearsEXPcol_Factorization(df);
+	public List<List<String>> YearsExpFactorization()
+	{
+		joinery.DataFrame df= Wuzzufobject.ReadAsJoineryDataFrame("Wuzzuf_JobsCleanedRest.csv");
+		joinery.DataFrame Newdf= Wuzzufobject.YearsEXPcol_Factorization(df);
 		List<List<String>> ls = new ArrayList<List<String>>();
 		for(int i = 0 ; i<Newdf.length(); i++) 
 		{
@@ -95,9 +93,10 @@ public class RestCo {
 	}
 	
 	@RequestMapping("/Kmeans")
-	public double [][] Kmeans() throws IOException, URISyntaxException, InvocationTargetException, InterruptedException{
-		smile.data.DataFrame SimleDF= object1.ReadASSmileDateFrame("Wuzzuf_JobsCleaned.csv");
-		double [][] KMEANS= object1.KmeanGraph(SimleDF);
+	public double [][] Kmeans()
+	{
+		smile.data.DataFrame SimleDF= Wuzzufobject.ReadASSmileDateFrame("Wuzzuf_JobsCleanedRest.csv");
+		double [][] KMEANS= Wuzzufobject.KmeanGraph(SimleDF);
 		
 	return KMEANS;
 	}
