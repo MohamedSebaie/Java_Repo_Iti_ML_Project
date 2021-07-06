@@ -57,7 +57,7 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
 
 <h4>Datframe</h4>
 <ol>
-  <ul><img  src="img_projects/03_Read_dataset_as_dataframe.PNG" alt="Read_dataset_as_dataframe.PNG"/></ul>
+  <ul><img  src="img_projects/03-Read_dataset_as_dataframe.PNG" alt="Read_dataset_as_dataframe.PNG"/></ul>
 </ol>
 
 <h4>Structure and Summary</h4>
@@ -98,7 +98,7 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
 
 <h4>Bar Chart for the most popular Areas</h4>
 <ol>
-  <ul><img  src="img_projects/11_barChart_for_most_popular_AreasPNG.PNG" alt="11_barChart_for_most_popular_AreasPNG"/></ul>
+  <ul><img  src="img_projects/11_.barChart_for_most_popular_AreasPNG.PNG" alt="11_barChart_for_most_popular_AreasPNG"/></ul>
 </ol>
  				
 <h4>skills one by one - how many each repeated - order -The most important skills required?
