@@ -22,15 +22,9 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
  				  * how many each repeated .											                          
  				  * order the output to find out the most important skills required?.	      
  			11-Factorize the YearsExp feature and convert it to numbers in new col.     
- 			12-Apply K-means for job title and companies.	                              
-# Main Package : 
-      -Smile DataFrame 
-      -TableSaw
-      -JoinaryDataFrame                      												                              	
- 																					                                        
-<img  src="Description.PNG" alt="Project Description"/>
-
-<h1>Project run steps</h1>
+ 			12-Apply K-means for job title and companies.	 
+ 
+ <h1>Project run steps</h1>
 <h3>Webservices(Server)</h3>
 <ol>
   <li>src/main/java
@@ -43,3 +37,12 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
   <ul>Test (Package)
  <ul>run "ConsumerTest" as ---> Java Application</ul></ul></li>
 </ol> 
+
+ 
+ 
+# Main Package : 
+      -Smile DataFrame 
+      -TableSaw
+      -JoinaryDataFrame                      												                              	
+ 																					                                        
+<img  src="Description.PNG" alt="Project Description"/>
