@@ -31,13 +31,13 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
 <img  src="Description.PNG" alt="Project Description"/>
 
 <h1>Project run steps</h1>
-<h2>Webservices(Server)</h2>
+<h3>Webservices(Server)</h3>
 <ol>
   <li>src/main/java</li>
   <li>ProjectMain (Package)</li>
  <li>run ConsumerTest as Java Application</li>
 </ol> 
-<h2>TesterClient (Client)</h2>
+<h3>TesterClient (Client)</h3>
 <ol>
   <li>src/main/java</li>
   <li>Test (Package)</li>
