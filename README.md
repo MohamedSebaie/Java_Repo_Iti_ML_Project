@@ -47,7 +47,7 @@ Machine Learning Project Java Programming Language (Webservices and  Tester Clie
      
 <h1>Image Projects</h1>
 <ol>
-  <li> <ul><img  src="Server.PNG" alt="Server"/></ul></li>
+  <li> <ul><img  src="img_projects/01_Server.PNG" alt="Server"/></ul></li>
 </ol> 
  																					                                        
 <img  src="Description.PNG" alt="Project Description"/>
